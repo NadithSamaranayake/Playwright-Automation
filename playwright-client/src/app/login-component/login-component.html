@@ -1,17 +1,27 @@
 <div class="login-container">
-  <div class="greetings-section"></div>
   <div class="form-section">
+    <div class="greetings-section">
+      <div class="branding">
+        <img src="assets/images/riskonnectLogo.webp" alt="Logo" class="logo" />
+        <span class="brand-name">Riskonnect</span>
+      </div>
+      <div class="greeting-text">
+        <h4>Welcome Back!</h4>
+        <p>Good luck finding those pesky bugs...</p>
+      </div>
+    </div>
+    <div class="login-signup">
+      <button class="btn btn-primary active signin">Sign In</button>
+      <button class="btn btn-secondary signup">Sign Up</button>
+    </div>
     <form>
       <div class="form-group">
-        <label>User name or Email</label>
         <input
           type="text"
           id="credential1"
           class="form-control"
           placeholder="User name or email"
         /><br />
-
-        <label>Password</label>
         <input type="password" id="credential2" class="form-control" placeholder="Password" /><br />
       </div>
     </form>
