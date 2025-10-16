@@ -10,12 +10,33 @@
         <p>Good luck finding those pesky bugs...</p>
       </div>
     </div>
+
     <div class="login-signup">
-      <button class="btn btn-primary active signin">Sign In</button>
-      <button class="btn btn-secondary signup">Sign Up</button>
+      <button
+        class="btn signin"
+        (click)="setActiveForm('signIn')"
+        [ngClass]="{
+          'btn-primary': activeForm === 'signIn',
+          'btn-secondary': activeForm !== 'signIn'
+        }"
+      >
+        Sign In
+      </button>
+      <button
+        class="btn signup"
+        (click)="setActiveForm('signUp')"
+        [ngClass]="{
+          'btn-primary': activeForm === 'signUp',
+          'btn-secondary': activeForm !== 'signUp'
+        }"
+      >
+        Sign Up
+      </button>
     </div>
+
+    @if(activeForm === 'signIn'){
     <form>
-      <div class="form-group">
+      <div class="form-group" animate.enter="enter-animation">
         <input
           type="text"
           id="credential1"
@@ -25,6 +46,35 @@
         <input type="password" id="credential2" class="form-control" placeholder="Password" /><br />
       </div>
     </form>
+    } @else {
+    <form>
+      <div class="form-group" animate.enter="enter-animation">
+        <input type="text" placeholder="User Name" class="form-control" /><br />
+        <input type="email" placeholder="Email" class="form-control" /><br />
+        <input type="password" placeholder="Password" class="form-control" /><br />
+        <input type="password" placeholder="Confirm Password" class="form-control" /><br />
+      </div>
+    </form>
+    }
+
+    <!--Sign Up form-->
+    <div id="signup-form" class="form">
+      <div class="form-group">
+        <input type="text" placeholder="User Name" class="form-control" /><br />
+        <input type="email" placeholder="Email" class="form-control" /><br />
+        <input type="password" placeholder="Password" class="form-control" /><br />
+        <input type="password" placeholder="Confirm Password" class="form-control" /><br />
+      </div>
+    </div>
+
+    <!--Action Buttons-->
+    <div class="action-btn">
+      <button
+        class="btn"
+        >
+        {{activeForm === 'signIn' ? 'Log In' : 'Sign Up'}}
+      </button>
+    </div>
   </div>
   <div class="img-section"></div>
 </div>
