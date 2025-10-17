@@ -17,6 +17,7 @@
     background-color: white;
     flex-direction: column;
     padding-top: 5%;
+    min-height: 450px;
 }
 
 .logo{
@@ -108,7 +109,7 @@ input{
   // padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 27px;
+  height: 100%;
   text-align: center;
 }
 
@@ -143,9 +144,15 @@ input{
   }
 }
 
+.auth-form{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .action-btn{
   display: flex;
-  margin-top: auto;
+  margin-top: auto !important;
   margin-bottom: 60px;
   width: 100%;
   max-width: 350px;
@@ -164,4 +171,17 @@ input{
 .action-btn:hover{
   background-color: #007bff;
   cursor: pointer;
+}
+
+.password-wrapper {
+  position: relative; /* This is the key to positioning the child span */
+}
+
+.toggle-password {
+  position: absolute; /* Position it relative to the wrapper */
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%); /* This perfectly centers it vertically */
+  cursor: pointer;
+  color: #666;
 }
