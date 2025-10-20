@@ -33,56 +33,6 @@
         Sign Up
       </button>
     </div>
-
-    <!-- @if(activeForm === 'signIn'){
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-      <div class="form-group" animate.enter="enter-animation">
-        <input
-          type="text"
-          id="credential1"
-          class="form-control"
-          placeholder="User name or email"
-          name="userNameorEmail"
-          ngModel
-        /><br />
-        <input
-          type="password"
-          id="credential2"
-          class="form-control"
-          placeholder="Password"
-          name="password"
-          ngModel
-        /><br />
-      </div>
-    </form>
-    } @else {
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-      <div class="form-group" animate.enter="enter-animation">
-        <input
-          type="text"
-          placeholder="User Name"
-          class="form-control"
-          name="userName"
-          ngModel
-        /><br />
-        <input type="email" placeholder="Email" class="form-control" name="email" ngModel /><br />
-        <input
-          type="password"
-          placeholder="Password"
-          class="form-control"
-          name="password"
-          ngModel
-        /><br />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          class="form-control"
-          name="confirmPassword"
-          ngModel
-        /><br />
-      </div>
-    </form>
-    } -->
     <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)">
       @if(activeForm === 'signIn'){
       <div class="form-group" animate.enter="enter-animation">
@@ -111,14 +61,6 @@
             } @else {<i class="fas fa-eye"></i>}
           </span>
         </div>
-        <!-- <input
-          type="password"
-          id="credential2"
-          class="form-control"
-          placeholder="Password"
-          name="password"
-          ngModel
-        /><br /> -->
       </div>
       } @else {
       <div class="form-group" animate.enter="enter-animation">

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgClass } from '@angular/common';
-import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
+import { LoginCredentials } from './models/auth.model';
 
 @Component({
   selector: 'app-login-component',
@@ -25,8 +26,10 @@ export class LoginComponent {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  onSubmit(form: any){
+  onSubmit(form: NgForm){
     alert('Form submitted!');
-    console.log(form.value);
+
+    const credentials: LoginCredentials = form.value;
+    console.log(credentials.userNameorEmail, credentials.password);
   }
 }
