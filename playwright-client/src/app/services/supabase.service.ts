@@ -24,6 +24,8 @@ export class SupabaseService {
   private supabase: SupabaseClient
   _session: AuthSession | null = null
 
+  test: string = "Hello Supabase Service";
+
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
   }

@@ -4,6 +4,7 @@ import { SupabaseService } from './supabase.service';
 
 describe('SupabaseService', () => {
   let service: SupabaseService;
+  let test: string;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
