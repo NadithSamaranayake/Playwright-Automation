@@ -10,19 +10,109 @@
         <p>Good luck finding those pesky bugs...</p>
       </div>
     </div>
+
     <div class="login-signup">
-      <button class="btn btn-primary active signin">Sign In</button>
-      <button class="btn btn-secondary signup">Sign Up</button>
+      <button
+        class="btn signin"
+        (click)="setActiveForm('signIn')"
+        [ngClass]="{
+          'btn-primary': activeForm === 'signIn',
+          'btn-secondary': activeForm !== 'signIn'
+        }"
+      >
+        Sign In
+      </button>
+      <button
+        class="btn signup"
+        (click)="setActiveForm('signUp')"
+        [ngClass]="{
+          'btn-primary': activeForm === 'signUp',
+          'btn-secondary': activeForm !== 'signUp'
+        }"
+      >
+        Sign Up
+      </button>
     </div>
-    <form>
-      <div class="form-group">
+    <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)">
+      @if(activeForm === 'signIn'){
+      <div class="form-group" animate.enter="enter-animation">
         <input
           type="text"
           id="credential1"
           class="form-control"
           placeholder="User name or email"
+          name="userNameorEmail"
+          ngModel
+          required="userNameorEmail"
         /><br />
-        <input type="password" id="credential2" class="form-control" placeholder="Password" /><br />
+        <div class="password-wrapper">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="credential2"
+            class="form-control"
+            placeholder="Password"
+            name="password"
+            ngModel
+            required
+          />
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            @if(passwordVisible){
+            <i class="fas fa-eye-slash"></i>
+            } @else {<i class="fas fa-eye"></i>}
+          </span>
+        </div>
+      </div>
+      } @else {
+      <div class="form-group" animate.enter="enter-animation">
+        <input
+          type="text"
+          placeholder="User Name"
+          class="form-control"
+          name="userName"
+          ngModel
+        /><br />
+        <input type="email" placeholder="Email" class="form-control" name="email" ngModel /><br />
+        <div class="password-wrapper">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="credential2"
+            class="form-control"
+            placeholder="Password"
+            name="password"
+            ngModel
+            required
+          />
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            @if(passwordVisible){
+            <i class="fas fa-eye-slash"></i>
+            } @else {<i class="fas fa-eye"></i>}
+          </span>
+        </div>
+        <br>
+        <div class="password-wrapper">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="credential3"
+            class="form-control"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            ngModel
+            required
+          />
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            @if(passwordVisible){
+            <i class="fas fa-eye-slash"></i>
+            } @else {<i class="fas fa-eye"></i>}
+          </span>
+        </div>
+      </div>
+      }
+
+      <!--Action Buttons-->
+      <div class="action-btn">
+        <button class="btn" type="submit" [disabled]="authForm.invalid">
+          {{ activeForm === 'signIn' ? 'Log In' : 'Sign Up' }}
+        </button>
       </div>
     </form>
   </div>
