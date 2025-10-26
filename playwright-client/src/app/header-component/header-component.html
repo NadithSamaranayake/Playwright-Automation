@@ -1,1 +1,6 @@
-<p>header-component works!</p>
+@if(supabaseService.session$ | async; as session){ 
+    <p>Welcome, {{session.user.email}}!</p>
+    <button (click)="logOut()">Log Out</button>
+} @else {
+    <p>You are not logged in!!!</p>
+}
