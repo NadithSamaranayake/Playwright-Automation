@@ -1,0 +1,33 @@
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    border-radius: 0px 20px 20px 0px;
+    justify-content: center;
+}
+
+button{
+    display: flex;
+    width: 98%;
+    border-radius: 10px;
+    height: 50px;
+    background-color: transparent;
+    color: white;
+    border: 0px;
+    align-items: center;    
+}
+
+button:hover{
+    background-color: #eaeaea;
+    cursor: pointer;
+    color: black;
+}
+
+.top-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}

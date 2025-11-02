@@ -1,0 +1,30 @@
+<div class="side-bar">
+  <div class="top-section">
+    <i class="fa" [ngClass]="activeIcon" style="margin-right: 10px;"></i>
+    {{ activeButton }}
+  </div>
+  <div class="mid-section">
+    <button
+      routerLink="dashboard"
+      routerLinkActive="active"
+      (click)="setActiveButton('Dashboard', 'fa-grip')"
+    >
+      <i class="fa fa-grip" style="margin-right: 10px"></i> Dashboard
+    </button>
+    <button
+      routerLink="test-cases"
+      routerLinkActive="active"
+      (click)="setActiveButton('Test Cases', 'fa-file-alt')"
+    >
+      <i class="fas fa-file-alt" style="margin-right: 10px"></i> Test Cases
+    </button>
+    <button
+      routerLink="reports"
+      routerLinkActive="active"
+      (click)="setActiveButton('Reports', 'fa-chart-line')"
+    >
+      <i class="fas fa-chart-line" style="margin-right: 10px"></i> Reports
+    </button>
+  </div>
+  <div class="bottom-section"></div>
+</div>
