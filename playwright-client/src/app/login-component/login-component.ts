@@ -50,7 +50,7 @@ export class LoginComponent {
         });
       } else {
         // alert("Sign in successful!");        
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/common-layout']);
       }
     } else {
       const {data, error} = await this.supabaseService.signUp(form.value);
@@ -66,7 +66,14 @@ export class LoginComponent {
         });        
       } else {
         alert("Sign up successful! Please check your email to confirm your account.");
-        this.router.navigate(['/dashboard']);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Sign up successful! Please check your email to confirm your account.',
+          icon: 'success',
+          confirmButtonText: 'Proceed',
+          confirmButtonColor: '#3085d6',
+        });
+        this.router.navigate(['']);
       }
     }
   }
