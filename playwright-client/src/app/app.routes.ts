@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard-component/dashboard.component';
 import { HeaderComponent } from './header-component/header-component';
 import { LoginComponent } from './login-component/login-component';
+import { CommonLayoutComponent } from './common-layout-component/common-layout-component';
+import { TestCasesComponent } from './test-cases-component/test-cases-component';
+import { SettingsComponent } from './settings-component/settings-component';
+import { ReportsComponent } from './reports-component/reports-component';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},

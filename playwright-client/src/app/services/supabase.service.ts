@@ -33,19 +33,6 @@ export class SupabaseService {
     });
   }
 
-  // get session() {
-  //   this.supabase.auth.getSession().then(({ data }) => {
-  //     this._session = data.session
-  //   })
-  //   return this._session
-  // }
-
-  // public async getSession(){
-  //   const {data} = await this.supabase.auth.getSession();
-  //   this._session = data.session;
-  //   return this._session;
-  // }
-
   profile(user: User) {
     return this.supabase
       .from('profiles')
@@ -53,20 +40,6 @@ export class SupabaseService {
       .eq('id', user.id)
       .single()
   }
-
-  // authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
-  //   return this.supabase.auth.onAuthStateChange(callback)
-  // }
-
-  // async signIn(LoginCredentials: LoginCredentials) {
-  //   const userExists = await this.supabase.from('login_table').select('username, email').eq('username', LoginCredentials.userNameorEmail).or(email.eq.LoginCredentials.userNameorEmail);
-
-  //   if(userExists != null){
-  //     console.log("User exists, proceeding to sign in.");
-  //   } else {
-  //     console.log("User does not exist.");
-  //   }  
-  // }
 
   signUp(credentials: SignUpCredentials) {
     return this.supabase.auth.signUp({
@@ -90,21 +63,4 @@ export class SupabaseService {
   signOut() {
     return this.supabase.auth.signOut()
   }
-
-  // updateProfile(profile: Profile) {
-  //   const update = {
-  //     ...profile,
-  //     updated_at: new Date(),
-  //   }
-
-  //   return this.supabase.from('profiles').upsert(update)
-  // }
-
-  // downLoadImage(path: string) {
-  //   return this.supabase.storage.from('avatars').download(path)
-  // }
-
-  // uploadAvatar(filePath: string, file: File) {
-  //   return this.supabase.storage.from('avatars').upload(filePath, file)
-  // }
 }

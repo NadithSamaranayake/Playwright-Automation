@@ -33,12 +33,12 @@
         Sign Up
       </button>
     </div>
-    <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)">
+    <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)" appPasswordMatcher
+    >
       @if(activeForm === 'signIn'){
       <div class="form-group" animate.enter="enter-animation">
         <input
           type="text"
-          id="credential1"
           class="form-control"
           placeholder="User name or email"
           name="userNameorEmail"
@@ -47,8 +47,7 @@
         /><br />
         <div class="password-wrapper">
           <input
-            [type]="passwordVisible ? 'text' : 'password'"
-            id="credential2"
+            [type]="passwordVisible ? 'text' : 'password'"            
             class="form-control"
             placeholder="Password"
             name="password"
@@ -75,12 +74,13 @@
         <div class="password-wrapper">
           <input
             [type]="passwordVisible ? 'text' : 'password'"
-            id="credential2"
             class="form-control"
             placeholder="Password"
             name="password"
             ngModel
             required
+            minlength="6"
+            #passwordField="ngModel"
           />
           <span class="toggle-password" (click)="togglePasswordVisibility()">
             @if(passwordVisible){
@@ -88,16 +88,26 @@
             } @else {<i class="fas fa-eye"></i>}
           </span>
         </div>
-        <br>
+
+        @if(passwordField.invalid && (passwordField.dirty || passwordField.touched)){
+        <div class="error-text text-danger">
+          @if(passwordField.errors?.['required']){
+          <small>Password is required.</small>
+          } @if(passwordField.errors?.['minlength']){
+          <small>Password must be at least 6 characters long.</small>
+          }
+        </div>
+        }
+        <br />
         <div class="password-wrapper">
           <input
-            [type]="passwordVisible ? 'text' : 'password'"
-            id="credential3"
+            [type]="passwordVisible ? 'text' : 'password'"            
             class="form-control"
             placeholder="Confirm Password"
             name="confirmPassword"
             ngModel
-            required
+            required            
+            #confirmPasswordField="ngModel"
           />
           <span class="toggle-password" (click)="togglePasswordVisibility()">
             @if(passwordVisible){
@@ -105,6 +115,16 @@
             } @else {<i class="fas fa-eye"></i>}
           </span>
         </div>
+
+        @if(confirmPasswordField.invalid && (confirmPasswordField.dirty || confirmPasswordField.touched)){
+        <div class="error-text text-danger">
+          @if(confirmPasswordField.errors?.['required']){
+          <small>Password is required.</small>
+          } @if(confirmPasswordField.errors?.['mustMatch']){
+          <small>Passwords must match.</small>
+          }
+        </div>
+        }
       </div>
       }
 
