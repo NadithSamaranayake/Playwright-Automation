@@ -15,6 +15,7 @@ export const routes: Routes = [
         path: 'common-layout', 
         component: CommonLayoutComponent,
         children:[
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             {path: 'dashboard', component: DashboardComponent},
             {path: 'test-cases', component: TestCasesComponent},
             {path: 'settings', component: SettingsComponent},
