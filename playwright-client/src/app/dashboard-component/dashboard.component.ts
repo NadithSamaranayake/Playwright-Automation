@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from "../header-component/header-component";
+import { CreateTestCaseComponent } from './dashboard-components/create-test-case-component/create-test-case-component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeaderComponent],
+  imports: [CreateTestCaseComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
