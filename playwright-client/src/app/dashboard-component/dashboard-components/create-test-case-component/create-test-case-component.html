@@ -1,5 +1,14 @@
 <div class="create-test-layout">
-    <form>
-        
+    <span>Create Test Case</span>  
+    <form #createTestCaseForm="ngForm">
+        <span>URL</span>
+        <br/> <br/>
+        <input
+            type="text"
+            class="form-control"
+            placeholder="https://example.com"
+            name="url"
+            ngModel
+            required="url">
     </form>
 </div>
