@@ -16,7 +16,7 @@ export class DashboardComponent {
 
   pingBackend(){
     console.log("Pinging backend...");
-    this.http.get('http://localhost:3000/api/ping')
+    this.http.get('http://localhost:3000/api/run-test')
     .subscribe(response =>{
       console.log("Response from backend:", response);
       alert("Backend Response: " + JSON.stringify(response));
