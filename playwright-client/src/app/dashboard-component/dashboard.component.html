@@ -9,4 +9,7 @@
         <app-recent-reports-component></app-recent-reports-component>
     </div>
     <button (click)="pingBackend()">Ping</button>
+    <section>
+        {{ results | json }}
+    </section>
 </div>
