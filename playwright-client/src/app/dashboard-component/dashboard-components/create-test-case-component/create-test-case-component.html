@@ -1,9 +1,18 @@
 <div class="create-test-layout">
   <span>Create Test Case</span>
   <form #createTestCaseForm="ngForm">
+    <span>Test Case Name</span>
+    <br />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Should have title"
+      name="testCaseName"
+      ngModel
+      required="testCaseName"/>
+    <br />
     <span>URL</span>
-    <br />
-    <br />
+    
     <input
       type="text"
       class="form-control"
@@ -11,6 +20,15 @@
       name="url"
       ngModel
       required="url"
-    />    
+    />  
+    <br />
+    <span>Expected results</span>  
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Expected results"
+      name="expectedResults"
+      ngModel
+      required="expectedResults"/>
   </form>
 </div>
