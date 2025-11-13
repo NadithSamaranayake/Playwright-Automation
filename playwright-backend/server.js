@@ -12,7 +12,7 @@ app.get("/api/run-test", (req, res) => {
   console.log("Received request to run test...");
 
   // This is the magic. It runs a terminal command.
-  exec("npx playwright test tests/example.spec.ts", (error, stdout, stderr) => {
+  exec("npx playwright test tests/sample-test.spec.ts --headed", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return res.status(500).json({ message: "Test failed", error: stderr });
