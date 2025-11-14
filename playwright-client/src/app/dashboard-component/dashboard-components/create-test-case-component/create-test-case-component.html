@@ -8,7 +8,7 @@
       class="form-control"
       placeholder="Should have title"
       name="testCaseName"
-      [(ngModel)] = "testName"
+      [(ngModel)] = "testConfig.testName"
       required/>
     <br />
     <span>URL</span>
@@ -18,7 +18,7 @@
       class="form-control"
       placeholder="https://example.com"
       name="url"
-      [(ngModel)] = "url"
+      [(ngModel)] = "testConfig.url"
       required/>
     <br />
     <span>Expected results</span>  
@@ -27,7 +27,7 @@
       class="form-control"
       placeholder="Expected results"
       name="expectedResults"
-      [(ngModel)] = "expectedResult"
+      [(ngModel)] = "testConfig.expectedResult"
       required/>
       <br />
       <span>Description</span>
@@ -36,7 +36,7 @@
         class="form-control"
         placeholder="Description"
         name="description"
-        [(ngModel)] = "description"
+        [(ngModel)] = "testConfig.description"
         required/>
 
         <button type="submit">submit</button>
