@@ -26,6 +26,17 @@ export class CreateTestCaseComponent {
 
   onSubmit(form: NgForm) {
     console.log("Form Submitted!", form.value);  
-    
+
+  }
+
+  onClear(){
+    this.testConfig = {
+      url: '',
+      testName: '',
+      headless: true,
+      expectedResult: '',
+      description: '',
+      slowmo: 0
+    }
   }
 }

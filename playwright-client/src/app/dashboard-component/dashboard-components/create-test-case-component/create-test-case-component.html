@@ -8,37 +8,42 @@
       class="form-control"
       placeholder="Should have title"
       name="testCaseName"
-      [(ngModel)] = "testConfig.testName"
-      required/>
+      [(ngModel)]="testConfig.testName"
+      required
+    />
     <br />
     <span>URL</span>
-    
+
     <input
       type="text"
       class="form-control"
       placeholder="https://example.com"
       name="url"
-      [(ngModel)] = "testConfig.url"
-      required/>
+      [(ngModel)]="testConfig.url"
+      required
+    />
     <br />
-    <span>Expected results</span>  
+    <span>Expected results</span>
     <input
       type="text"
       class="form-control"
       placeholder="Expected results"
       name="expectedResults"
-      [(ngModel)] = "testConfig.expectedResult"
-      required/>
-      <br />
-      <span>Description</span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Description"
-        name="description"
-        [(ngModel)] = "testConfig.description"
-        required/>
+      [(ngModel)]="testConfig.expectedResult"
+      required
+    />
+    <br />
+    <span>Description</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="testConfig.description"
+      required
+    />
 
-        <button type="submit">submit</button>
+    <button type="submit" class="btnSubmit">submit</button>
+    <button type="button" (click)="onClear()" class="btnClear">clear</button>
   </form>
 </div>
