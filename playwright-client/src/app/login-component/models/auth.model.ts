@@ -1,4 +1,5 @@
 export interface LoginCredentials{
+  organization?: string;
   userNameorEmail: string;
   password: string;
 }
@@ -8,4 +9,5 @@ export interface SignUpCredentials{
   email: string;
   password: string;
   confirmPassword: string;
+  organization?: string;
 }

@@ -47,7 +47,8 @@ export class SupabaseService {
       password: credentials.password,
       options: {
         data:{
-          userName: credentials.userName
+          userName: credentials.userName,
+          organization: credentials.organization || null
         }
       }
     });

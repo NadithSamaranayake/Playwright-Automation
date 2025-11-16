@@ -1,5 +1,7 @@
 <div class="login-container">
   <div class="form-section">
+
+    <!-- Greetings and Branding -->
     <div class="greetings-section">
       <div class="branding">
         <img src="assets/images/riskonnectLogo.webp" alt="Logo" class="logo" />
@@ -11,6 +13,7 @@
       </div>
     </div>
 
+    <!-- Login and Signup Form button switch -->
     <div class="login-signup">
       <button
         class="btn signin"
@@ -33,10 +36,21 @@
         Sign Up
       </button>
     </div>
-    <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)" appPasswordMatcher
-    >
+
+    <!-- Authentication Form -->
+    <form #authForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(authForm)" appPasswordMatcher>
       @if(activeForm === 'signIn'){
       <div class="form-group" animate.enter="enter-animation">
+        <!--Organization Field-->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Organization"
+          ngModel
+          required>
+        <br/>
+
+        <!--Username or Email Field-->
         <input
           type="text"
           class="form-control"
@@ -45,9 +59,11 @@
           ngModel
           required="userNameorEmail"
         /><br />
+
+        <!--Password Field-->
         <div class="password-wrapper">
           <input
-            [type]="passwordVisible ? 'text' : 'password'"            
+            [type]="passwordVisible ? 'text' : 'password'"
             class="form-control"
             placeholder="Password"
             name="password"
@@ -62,7 +78,10 @@
         </div>
       </div>
       } @else {
+        <!-- Sign Up Form -->
       <div class="form-group" animate.enter="enter-animation">
+
+        <!--User Name Field-->
         <input
           type="text"
           placeholder="User Name"
@@ -70,7 +89,39 @@
           name="userName"
           ngModel
         /><br />
-        <input type="email" placeholder="Email" class="form-control" name="email" ngModel /><br />
+
+        <!--Email Field-->
+        <input
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          name="email"
+          ngModel
+          required
+          #emailField="ngModel"
+          email
+        />
+        @if(emailField.invalid && (emailField.dirty || emailField.touched)){
+        <div class="error-text text-danger" style="margin-left: 13px;">
+          @if(emailField.errors?.['required']){
+          <small>Email is required.</small>
+          } @if(emailField.errors?.['email']){
+          <small>Invalid email format.</small>
+          }
+        </div>
+        }
+        <br />
+
+        <!--Organization Field-->
+        <input
+          type="text"
+          placeholder="Organization"
+          class="form-control"
+          name="organization"
+          ngModel
+        /><br />
+
+        <!--Password Field-->
         <div class="password-wrapper">
           <input
             [type]="passwordVisible ? 'text' : 'password'"
@@ -88,7 +139,6 @@
             } @else {<i class="fas fa-eye"></i>}
           </span>
         </div>
-
         @if(passwordField.invalid && (passwordField.dirty || passwordField.touched)){
         <div class="error-text text-danger">
           @if(passwordField.errors?.['required']){
@@ -99,14 +149,16 @@
         </div>
         }
         <br />
+
+        <!--Confirm Password Field-->
         <div class="password-wrapper">
           <input
-            [type]="passwordVisible ? 'text' : 'password'"            
+            [type]="passwordVisible ? 'text' : 'password'"
             class="form-control"
             placeholder="Confirm Password"
             name="confirmPassword"
             ngModel
-            required            
+            required
             #confirmPasswordField="ngModel"
           />
           <span class="toggle-password" (click)="togglePasswordVisibility()">
@@ -116,7 +168,8 @@
           </span>
         </div>
 
-        @if(confirmPasswordField.invalid && (confirmPasswordField.dirty || confirmPasswordField.touched)){
+        @if(confirmPasswordField.invalid && (confirmPasswordField.dirty ||
+        confirmPasswordField.touched)){
         <div class="error-text text-danger">
           @if(confirmPasswordField.errors?.['required']){
           <small>Password is required.</small>
