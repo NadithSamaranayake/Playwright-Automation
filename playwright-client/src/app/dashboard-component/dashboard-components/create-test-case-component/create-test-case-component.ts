@@ -14,7 +14,7 @@ export class CreateTestCaseComponent {
   testConfig: CreateTestCaseModel = {
     url: '',
     testName: '',
-    headless: true,
+    headless: false,
     expectedResult: '',
     description: '',
     slowmo: 0

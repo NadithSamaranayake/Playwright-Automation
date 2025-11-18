@@ -3,7 +3,8 @@ import { CreateTestCaseComponent } from './dashboard-components/create-test-case
 import { RecentDemosComponent } from "./dashboard-components/recent-demos-component/recent-demos-component";
 import { RecentReportsComponent } from "./dashboard-components/recent-reports-component/recent-reports-component";
 import { HttpClient } from '@angular/common/http';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgFor } from '@angular/common';
+import { ReturnedResultsModel } from './models/returned-results.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ import { JsonPipe } from '@angular/common';
     CreateTestCaseComponent, 
     RecentDemosComponent, 
     RecentReportsComponent, 
-    JsonPipe
+    JsonPipe,
+    NgFor
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -19,6 +21,7 @@ import { JsonPipe } from '@angular/common';
 export class DashboardComponent {
 
   results: any[] = [];
+  returnedResults: ReturnedResultsModel[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +32,9 @@ export class DashboardComponent {
       console.log("Response from backend:", response);
       alert("Backend Response: " + JSON.stringify(response));
       this.results = [response];
+      this.returnedResults = [response as ReturnedResultsModel];
     });
+
+
   }
 }
