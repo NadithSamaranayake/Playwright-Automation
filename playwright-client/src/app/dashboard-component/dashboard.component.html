@@ -10,6 +10,14 @@
     </div>
     <button (click)="pingBackend()">Ping</button>
     <section>
-        {{ results | json }}
+        returned results:
+        <pre>{{ returnedResults | json }}</pre>
+        <ul>
+            <li *ngFor="let result of returnedResults">
+                {{ result.testName }} - {{ result.status }}
+            </li>
+        </ul>
     </section>
 </div>
+
+<br>
