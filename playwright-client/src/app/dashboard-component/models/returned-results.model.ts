@@ -9,3 +9,10 @@ export interface ReturnedResultsModel {
     workerId: number;
     workerDuration: number;
 }
+
+export interface SummaryResultsModel {
+    total: number;
+    passed: number;
+    failed: number;
+    skipped: number;
+}
