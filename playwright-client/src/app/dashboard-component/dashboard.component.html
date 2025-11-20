@@ -1,23 +1,27 @@
 <div class="dashboard-layout">
-    <div class="create-test-case-comp">
-        <app-create-test-case-component></app-create-test-case-component>
-    </div>
-    <div class="recent-demos-comp">
-        <app-recent-demos-component></app-recent-demos-component>
-    </div>
-    <div class="recent-reports-comp">
-        <app-recent-reports-component></app-recent-reports-component>
-    </div>
-    <button (click)="pingBackend()">Ping</button>
-    <section>
-        returned results:
-        <pre>{{ returnedResults | json }}</pre>
-        <ul>
-            <li *ngFor="let result of returnedResults">
-                {{ result.testName }} - {{ result.status }}
-            </li>
-        </ul>
-    </section>
+  <div class="create-test-case-comp">
+    <app-create-test-case-component></app-create-test-case-component>
+  </div>
+  <div class="recent-demos-comp">
+    <app-recent-demos-component></app-recent-demos-component>
+  </div>
+  <div class="recent-reports-comp">
+    <app-recent-reports-component></app-recent-reports-component>
+  </div>
+  <button (click)="pingBackend()" [disabled]="isLoading">
+    {{ isLoading ? 'Running Test...' : 'Run Sample Test' }}
+  </button>
+  <section>
+    <h3>Debug: Test Titles</h3>
+    {{returnedResults[0]?.testName}}
+    <p>Count: {{ returnedResults.length }}</p>
+
+    <ul>
+      <li *ngFor="let item of returnedResults">
+        {{ item.testName }}
+      </li>
+    </ul>
+  </section>
 </div>
 
-<br>
+<br />
