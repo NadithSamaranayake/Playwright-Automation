@@ -19,7 +19,6 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent {
 
-  results: any[] = [];
   returnedResults: ReturnedResultsModel[] = [];
   isLoading: boolean = false;
 
@@ -32,7 +31,7 @@ export class DashboardComponent {
     this.http.get<any>('http://localhost:3000/api/run-test')
       .subscribe({
         next: (rawReport) => {
-          console.log("Response received");
+          console.log("Response received", rawReport);
           this.returnedResults = this.mapToModel(rawReport);
         },
 
@@ -50,46 +49,49 @@ export class DashboardComponent {
   }
 
   private mapToModel(rawReport: any): ReturnedResultsModel[] {
-  const processedResults: ReturnedResultsModel[] = [];
+    const processedResults: ReturnedResultsModel[] = [];
 
-  // Helper function to process a list of specs
-  const processSpecs = (specs: any[], groupName: string, fileName: string) => {
-    specs?.forEach((spec: any) => {
-      spec.tests?.forEach((testRun: any) => {
-        // Safety check: ensure results exist
-        const result = testRun.results[0]; 
-        if (!result) return;
+    // 1. Iterate through every File (e.g., sample.spec.ts)
+    rawReport.suites?.forEach((fileSuite: any) => {
+      
+      // --- CASE A: Tests at the Root Level (No Describe Block) ---
+      if (fileSuite.specs && fileSuite.specs.length > 0) {
+        this.extractSpecs(fileSuite.specs, fileSuite.title, 'Root', processedResults, rawReport.stats.expected);
+      }
 
-        processedResults.push({
-          status: result.status,
-          browser: testRun.projectName,
-          testFile: fileName,
-          testGroup: groupName, // Might be 'Root' or the Describe name
-          testName: spec.title,
-          duration: result.duration,
-          workerId: result.workerIndex,
-          workerDuration: result.duration,
-          totalTests: rawReport.stats.expected
+      // --- CASE B: Tests inside Describe Blocks (Nested Suites) ---
+      if (fileSuite.suites && fileSuite.suites.length > 0) {
+        fileSuite.suites.forEach((groupSuite: any) => {
+          if (groupSuite.specs) {
+            this.extractSpecs(groupSuite.specs, fileSuite.title, groupSuite.title, processedResults, rawReport.stats.expected);
+          }
         });
-      });
-    });
-  };
-
-  // Iterate through files
-  rawReport.suites?.forEach((fileSuite: any) => {
-    // 1. Capture Top-Level Tests (No Describe block)
-    if (fileSuite.specs) {
-      processSpecs(fileSuite.specs, 'Root', fileSuite.title);
-    }
-
-    // 2. Capture Nested Tests (Inside Describe blocks)
-    fileSuite.suites?.forEach((groupSuite: any) => {
-      if (groupSuite.specs) {
-        processSpecs(groupSuite.specs, groupSuite.title, fileSuite.title);
       }
     });
-  });
 
-  return processedResults;
-}
+    return processedResults;
+  }
+
+  // Helper function to avoid repeating code
+  private extractSpecs(specs: any[], fileName: string, groupName: string, resultsArray: ReturnedResultsModel[], totalTests: number) {
+    specs.forEach((spec: any) => {
+      spec.tests?.forEach((testRun: any) => {
+        const result = testRun.results[0];
+
+        if (result) {
+          resultsArray.push({
+            status: result.status,
+            browser: testRun.projectName,
+            testFile: fileName,
+            testGroup: groupName,
+            testName: spec.title,
+            duration: result.duration,
+            workerId: result.workerIndex,
+            workerDuration: result.duration,
+            totalTests: totalTests
+          });
+        }
+      });
+    });
+  }
 }
