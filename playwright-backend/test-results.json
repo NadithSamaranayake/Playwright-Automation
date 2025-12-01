@@ -118,12 +118,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1722,
+                      "duration": 3828,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-21T03:04:32.280Z",
+                      "startTime": "2025-12-01T15:54:07.174Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -152,12 +152,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3825,
+                      "duration": 7119,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-21T03:04:32.276Z",
+                      "startTime": "2025-12-01T15:54:07.138Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -186,12 +186,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 2435,
+                      "duration": 4719,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-21T03:04:32.267Z",
+                      "startTime": "2025-12-01T15:54:07.123Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -211,8 +211,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-11-21T03:04:31.567Z",
-    "duration": 11157.884,
+    "startTime": "2025-12-01T15:54:04.802Z",
+    "duration": 16328.754,
     "expected": 3,
     "skipped": 0,
     "unexpected": 0,

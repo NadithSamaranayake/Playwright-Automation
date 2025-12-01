@@ -4,7 +4,7 @@ import { RecentDemosComponent } from "./dashboard-components/recent-demos-compon
 import { RecentReportsComponent } from "./dashboard-components/recent-reports-component/recent-reports-component";
 import { HttpClient } from '@angular/common/http';
 import { ReturnedResultsModel } from './models/returned-results.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +21,10 @@ export class DashboardComponent {
 
   returnedResults: ReturnedResultsModel[] = [];
   isLoading: boolean = false;
+  result: any;
+
+  statusMessage: string = '';
+  testLogs: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -33,6 +37,8 @@ export class DashboardComponent {
         next: (rawReport) => {
           console.log("Response received", rawReport);
           this.returnedResults = this.mapToModel(rawReport);
+          this.result = rawReport;
+          this.saveData(rawReport);
         },
 
         error: (err) => {
@@ -46,6 +52,16 @@ export class DashboardComponent {
           this.isLoading = false;
         }
       });
+  }
+
+  saveData(rawReport: any){
+    const {message, output} = rawReport;
+
+    this.statusMessage = message;
+    this.testLogs = output;
+
+    console.log("Message: "+this.statusMessage);
+    console.log("Reponse: "+this.testLogs);
   }
 
   private mapToModel(rawReport: any): ReturnedResultsModel[] {

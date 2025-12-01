@@ -9,3 +9,8 @@ export interface ReturnedResultsModel {
     workerId: number;
     workerDuration: number;
 }
+
+export interface TestApiResponse{
+    message: string;
+    output: string;
+}

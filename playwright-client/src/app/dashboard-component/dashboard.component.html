@@ -12,15 +12,22 @@
     {{ isLoading ? 'Running Test...' : 'Run Sample Test' }}
   </button>
   <section>
-    <h3>Debug: Test Titles</h3>
-    <h1 style="color: red;">{{returnedResults.length}}</h1>
+    <h3>Debug: Test results</h3>
+    <!-- <h1 style="color: red;">{{returnedResults.length}}</h1>
     <p>Count: {{ returnedResults.length }}</p>
 
     <ul>
       <li *ngFor="let item of returnedResults">
         {{ item.testName }}
       </li>
-    </ul>
+    </ul> -->
+    <p>
+      {{result | json}}
+    </p>
+
+    <h1>
+      {{statusMessage}}
+    </h1>
   </section>
 </div>
 
